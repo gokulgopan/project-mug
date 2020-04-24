@@ -3,32 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ title }} - Mug</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Document</title>
 </head>
 <body>
+    <div class="container">
+        <div class="navbar">
+            
+        <div class="logo nav-box">
+            Project-Mug
+        </div>
+        <nav class="nav     nav-box">
+            <ul class="">
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+            {% if current_user.is_anonymous %}
+            {% if not islogin %}
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+            {% else %}
+            {% if not isprofile %}
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
+            {% endif %}
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add_update') }}">Add</a></li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+            </ul>  
+        </nav>
+    </div>
+    <div class="main">
     <div>
-        Mug:
-        <a href="{{ url_for('index') }}">Home</a>
-        {% if current_user.is_anonymous %}
-        <a href="{{ url_for('login') }}">Login</a>
-        {% else %}
-        <a href="{{ url_for('logout') }}">logout</a>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+        {{ message }}
+        </div>
+        {% endfor %}
+       
         {% endif %}
+        {% endwith %}
     </div>
 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    
-    <ul>
-        {% for message in messages %}
-        <li>
-            {{ message }}
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    {% block content %}{% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    </div>
+</div>
+</div>
+
 </body>
 </html>
