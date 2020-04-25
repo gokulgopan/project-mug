@@ -3,6 +3,9 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
+
+
 userteams = db.Table('userteams',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('team_id', db.Integer, db.ForeignKey('team.id'))

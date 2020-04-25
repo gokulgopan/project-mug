@@ -5,6 +5,21 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post, Team, userteams, Roles, userroles
 from flask import request
 from werkzeug.urls import url_parse
+from functools import wraps
+
+
+def admin_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        u = current_user
+        user = User.query.filter(User.id == u.id).first()
+        role = user.roles.first()
+        if role.name == "Admin":
+            return f(*args, **kwargs)
+        else:
+            flash("You need to be an admin to view this page.")
+            return redirect(url_for('index'))
+    return wrap
 
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
@@ -102,6 +117,13 @@ def admin():
     if role is not None:
         if role.id is admin_role.id:
             return 'You are admin'
+    return redirect(url_for('index'))
+
+
+@app.route('/admin2')
+@login_required
+@admin_required
+def admin2():
     return redirect(url_for('index'))
 
 
