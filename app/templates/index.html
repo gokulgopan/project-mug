@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-{% for a in posts.items %}
+{% for a in posts %}
 <div class="card">
     <div class="card-data">
         <h3>{{ a.title }}</h3><br>
@@ -10,25 +9,5 @@
         {{ a.author.username }} at {{ a.timestamp }}
 </div></div>
 {% endfor %}
-
-
-
-    <ul class="pagination">
-        {% if posts.has_prev %}
-          <li class="page-item"> <a class="page-link" href="{{ url_for('index', page=posts.prev_num) }}">Previous</a></li>
-        {% else %}
-          <li class="page-item"><a class="page-link btn disabled" href="#">Previous</a></li>
-        {% endif %}
-
-
-        {% if posts.has_next %}
-          <li class="page-item"> <a class="page-link" href="{{ url_for('index', page=posts.next_num) }}">Next</a></li>
-        {% else %}
-          <li class="page-item"><a class="page-link btn disabled" href="#">Next</a></li>
-        {% endif %}
-
-    </ul>
-
-
 
 {% endblock %}

@@ -1,23 +1,38 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for
-from app.forms import LoginForm, RegisterForm, PostForm
+from app.forms import LoginForm, RegisterForm, PostForm, CreateTeam
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post, Team, userteams, Roles, userroles
 from flask import request
 from werkzeug.urls import url_parse
 
-@app.route('/index/<int:page>', methods=['GET', 'POST'], defaults={"page": 1})
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
-def index(page):
+def index():
     user = current_user
-    page = request.args.get('page', 1, type=int)
     team = Team.query.join(userteams).join(User).filter((userteams.c.user_id == user.id) & (userteams.c.team_id == Team.id)).first()
-    page = page
-    per_page = 2
-    posts = Post.query.filter(Post.team_id == team.id).order_by(Post.timestamp.desc()).paginate(page,per_page,error_out=False)
-    
+    #if team is not None:
+    posts = Post.query.filter(Post.team_id == team.id).order_by(Post.timestamp.desc())
+        #if posts is not None:
     return render_template('index.html', title='Updates', posts=posts)
+    #return "Welcome"
 
+
+@app.route('/create-team', methods=['GET', 'POST'])
+@login_required
+def create_team():
+    user = current_user
+    form = CreateTeam()
+    if form.validate_on_submit():
+        team = Team(name=form.name.data, body=form.body.data)
+        team.set_password(form.password.data)
+        db.session.add(team)
+        db.session.commit()
+        user.teams.append(team)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('join_team.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

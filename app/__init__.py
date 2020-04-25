@@ -14,5 +14,5 @@ login = LoginManager(app)
 login.login_view = 'login'
 ckeditor = CKEditor(app)
 
+
 from app import routes, models
-from app.admin import admin

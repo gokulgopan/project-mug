@@ -35,3 +35,10 @@ class PostForm(FlaskForm):
     title = StringField('title', validators=[DataRequired()], render_kw={"placeholder": "title"})
     body = CKEditorField('Body', validators=[DataRequired()], render_kw={"placeholder": "body"})
     submit = SubmitField('Add')
+
+class CreateTeam(FlaskForm):
+    name = StringField('Team name', validators=[DataRequired()], render_kw={"placeholder": "Team Name"})
+    body = StringField('About', validators=[DataRequired()], render_kw={"placeholder": "Description"})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
+    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')], render_kw={"placeholder": "Repeat Password"})
+    submit = SubmitField('Register')

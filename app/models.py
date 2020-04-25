@@ -26,10 +26,17 @@ class Team(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(64), index=True, unique=True)
     body = db.Column(db.String(128))
+    password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='teams', lazy='dynamic')
 
     def __repr__(self):
         return f'<name { self.name }>'
+    
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
