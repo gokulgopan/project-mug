@@ -25,7 +25,6 @@ def create_team():
     form = CreateTeam()
     if form.validate_on_submit():
         team = Team(name=form.name.data, body=form.body.data)
-        team.set_password(form.password.data)
         db.session.add(team)
         db.session.commit()
         user.teams.append(team)
