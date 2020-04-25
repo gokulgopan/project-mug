@@ -16,7 +16,7 @@ def index():
         #if posts is not None:
     return render_template('index.html', title='Updates', posts=posts)
     #return "Welcome"
-
+ 
 
 @app.route('/create-team', methods=['GET', 'POST'])
 @login_required
@@ -93,7 +93,7 @@ def add_update():
     return render_template('add_post.html', form=form)
 
 
-@app.route('/admin2')
+@app.route('/admin')
 @login_required
 def admin():
     user = current_user
@@ -105,15 +105,26 @@ def admin():
     return redirect(url_for('index'))
 
 
-@app.route('/admin2/add-user')
+@app.route('/admin/add-user', methods=['GET', 'POST'])
 @login_required
 def admin_add_user():
     form = RegisterForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, firstname=form.firstname.data, secondname=form.secondname.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations')
+        return redirect(url_for('index'))
     user = current_user
     role = Roles.query.join(userroles).join(User).filter((userroles.c.user_id == user.id) & (userroles.c.role_id == Roles.id)).first()
     admin_role = Roles.query.filter(Roles.name == 'Admin').first()
     if role is not None:
         if role.id is admin_role.id:
             return render_template('register.html', form=form)
+ 
     return redirect(url_for('index'))
+    
+    
+
 
