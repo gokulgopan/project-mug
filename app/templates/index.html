@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for a in posts %}
+{% for a in posts.items %}
 <div class="card">
     <div class="card-data">
         <h3>{{ a.title }}</h3><br>
         <p>{{ a.body | safe  }}</p><br>
         {{ a.author.username }} at {{ a.timestamp }}
 </div></div>
+
+{% endfor %}
+
+{% for page_num in posts.iter_pages() %}
+  {% if page_num %}
+    <a href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+  {% else %}
+    ...
+  {% endif %}
 {% endfor %}
 
 {% endblock %}

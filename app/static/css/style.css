@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 html, body {
     height: 100%;
     font-family:'Roboto', sans-serif;
@@ -16,6 +17,13 @@ html, body {
     flex-wrap: wrap;
 }
 
+
+.main {
+    flex: 5;
+    min-height: 100%;
+    margin: 10px auto;
+
+}
 .navbar {
     display: flex;
     flex-direction: column;
@@ -26,15 +34,43 @@ html, body {
     top: 0;
     min-height: 100%;
     align-items: stretch;
+    background-color: var(--bg-primary);
+    transition: width 600ms ease;
 
 }
 
-.main {
-    flex: 5;
-    min-height: 100%;
-    margin: 10px auto;
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  
+.nav-item {
+    width: 100%;
+  }
 
-}
+  .nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: var(--transition-speed);
+  }
+  
+  .nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+  }
+
+
+  
 
 .logo {
     color: #000;
@@ -124,15 +160,21 @@ input[type=text], input[type=password], select {
   }
   
 
-  .card {
-    border-bottom: 1px solid #ccc;
-    transition: 0.3s;
-    width: 100%;
-    background: #cae8d5;
+  
+.card {
+    margin: 10px;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+
+
   }
   
   .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    transform: scale(1.03, 1.03)
   }
 
   .card-data {

@@ -12,11 +12,12 @@ def index():
     user = current_user
     team = Team.query.join(userteams).join(User).filter((userteams.c.user_id == user.id) & (userteams.c.team_id == Team.id)).first()
     #if team is not None:
-    posts = Post.query.filter(Post.team_id == team.id).order_by(Post.timestamp.desc())
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(Post.team_id == team.id).order_by(Post.timestamp.desc()).paginate(page=page, per_page=3)
         #if posts is not None:
     return render_template('index.html', title='Updates', posts=posts)
     #return "Welcome"
- 
+
 
 @app.route('/create-team', methods=['GET', 'POST'])
 @login_required
