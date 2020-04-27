@@ -51,14 +51,50 @@ html, body {
 }
 
 #main-svg-add {
-    height: 100%;
-    width 20px;
     fill:#fff;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
 
 }
 
 #main-svg-bar {
-    height: 100%;
-    width 20px;
-    fill:#000;
+    fill:#fff;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
 }
+
+
+#user-nav {
+    background: #ccc;
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    top: 0;
+    min-height: 40px;
+    list-style: none;
+}
+
+.nav-item {
+  margin: 10px auto;
+  background-color: #fff;
+  overflow: hidden;
+  flex:1;
+}
+
+.nav-link {
+    align-items: center;
+    text-decoration: none;
+    display: block;
+    margin: 5px;
+
+}
+  
+.nav-link:hover {
+    background: ;
+}
+

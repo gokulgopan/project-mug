@@ -1,10 +1,7 @@
-<div>
-            
-    <div class="logo nav-box">
-        Project-Mug
-    </div>
-    <nav class="navbar">
-        <ul class="navbar-nav">
+
+    <nav id="user-nav">
+
+        <ul class="navbar">
         <li class="nav-item">
         <a class="nav-link" href="{{ url_for('index') }}">
         <span class="link-text">
@@ -26,7 +23,6 @@
         <li class="nav-item">
         <a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
         {% endif %}
-        </ul>  
-    </nav>
+        </ul> 
 
-</div>
+    </nav>
