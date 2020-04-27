@@ -69,6 +69,8 @@ html, body {
 #user-nav {
     background: #ccc;
     display: none;
+	transition: height 350ms ease-in-out;
+
 }
 
 .navbar {
@@ -81,8 +83,6 @@ html, body {
 
 .nav-item {
   margin: 10px auto;
-  background-color: #fff;
-  overflow: hidden;
   flex:1;
 }
 
