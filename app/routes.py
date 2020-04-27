@@ -127,7 +127,8 @@ def admin2():
     return redirect(url_for('index'))
 
 
-@app.route('/admin/add-user', methods=['GET', 'POST'])
+@app.route('/admin/users/add-user', methods=['GET', 'POST'])
+@admin_required
 @login_required
 def admin_add_user():
     form = RegisterForm()
@@ -138,15 +139,34 @@ def admin_add_user():
         db.session.commit()
         flash('Congratulations')
         return redirect(url_for('index'))
-    user = current_user
-    role = Roles.query.join(userroles).join(User).filter((userroles.c.user_id == user.id) & (userroles.c.role_id == Roles.id)).first()
-    admin_role = Roles.query.filter(Roles.name == 'Admin').first()
-    if role is not None:
-        if role.id is admin_role.id:
-            return render_template('register.html', form=form)
- 
-    return redirect(url_for('index'))
-    
-    
+    return render_template('register.html', form=form)
 
+@app.route('/admin/teams/add-team', methods=['GET', 'POST'])
+@admin_required
+@login_required
+def admin_add_team():
+    return "Add Team"
 
+@app.route('/admin/teams/rm-team', methods=['GET', 'POST'])
+@admin_required
+@login_required
+def admin_remove_team():
+    return "Add Team"
+    
+@app.route('/admin/teams/add-user', methods=['GET', 'POST'])
+@admin_required
+@login_required
+def admin_add_user_team():
+    return "Add User to Team"
+    
+@app.route('/admin/teams/remove-user', methods=['GET', 'POST'])
+@admin_required
+@login_required
+def admin_rm_user_team():
+    return "Remove User from Team"
+
+@app.route('/admin/users/remove-user', methods=['GET', 'POST'])
+@admin_required
+@login_required
+def admin_rm_user():
+    return "Remove User"

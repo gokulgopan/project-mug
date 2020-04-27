@@ -39,6 +39,4 @@ class PostForm(FlaskForm):
 class CreateTeam(FlaskForm):
     name = StringField('Team name', validators=[DataRequired()], render_kw={"placeholder": "Team Name"})
     body = StringField('About', validators=[DataRequired()], render_kw={"placeholder": "Description"})
-    password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
-    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')], render_kw={"placeholder": "Repeat Password"})
     submit = SubmitField('Register')

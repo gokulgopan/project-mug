@@ -8,7 +8,6 @@
         <p>{{ a.body | safe  }}</p><br>
         {{ a.author.username }} at {{ a.timestamp }}
 </div></div>
-
 {% endfor %}
 
 {% for page_num in posts.iter_pages() %}

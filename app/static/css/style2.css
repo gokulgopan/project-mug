@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100vh;
+    font-family:'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 100%;
+}
+
+/* main navigation */
+
+.main-nav {
+    display: flex;
+    background: #000;
+    height: 40px;
+}
+
+.logo {
+    color: #fff;
+    margin:auto 5px;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 5px;
+    flex:1;
+}
+
+.main-search {
+    flex:2;
+    margin:5px;
+}
+
+.main-search input[type=text] {
+    width: 100%;
+    padding: 6px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.main-icons {
+    flex:1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#main-svg-add {
+    height: 100%;
+    width 20px;
+    fill:#fff;
+
+}
+
+#main-svg-bar {
+    height: 100%;
+    width 20px;
+    fill:#000;
+}

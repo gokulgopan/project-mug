@@ -20,14 +20,13 @@ html, body {
 
 .main {
     flex: 5;
-    min-height: 100%;
+    min-height: 95%;
     margin: 10px auto;
 
 }
 .navbar {
     display: flex;
     flex-direction: column;
-    width: 27%;
     flex: 1;
     position: sticky;
     align-self: flex-start;
@@ -39,7 +38,7 @@ html, body {
 
 }
 
-.navbar-nav {
+.navbar > .navbar-nav {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -49,27 +48,34 @@ html, body {
     height: 100%;
   }
   
-.nav-item {
-    width: 100%;
+.navbar-nav > .nav-item {
+  margin: 10px auto;
+  transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+  width: 95%;
   }
 
-  .nav-link {
+  .navbar-nav > .nav-link {
     display: flex;
     align-items: center;
-    height: 5rem;
     color: var(--text-primary);
     text-decoration: none;
     filter: grayscale(100%) opacity(0.7);
     transition: var(--transition-speed);
   }
   
-  .nav-link:hover {
+  .navbar-nav >  .nav-link:hover {
     filter: grayscale(0%) opacity(1);
     background: var(--bg-secondary);
     color: var(--text-secondary);
   }
 
+.link-text {
 
+}
   
 
 .logo {
@@ -162,13 +168,13 @@ input[type=text], input[type=password], select {
 
   
 .card {
-    margin: 10px;
+    margin: 10px auto;
     transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
     background-color: #fff;
     position: relative;
     overflow: hidden;
     box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
-
+    width: 90%;
 
   }
   
@@ -196,4 +202,11 @@ input[type=text], input[type=password], select {
     padding: 20px;
     background: #ccc;
     border-left: 5px solid rgb(104, 103, 103);
+}
+
+.main-nav {
+  height: 6opx;
+  display: flex;
+  width:100%;
+
 }
