@@ -3,15 +3,25 @@
     padding: 0;
 }
 
-html, body {
-    height: 100vh;
+html {
+}
+
+body {
     font-family:'Roboto', sans-serif;
+    margin: 0;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 60%;
     margin: 0 auto;
-    min-height: 100%;
+    background: #ccc;
+    min-height: 100vh;
+    height: auto;
+    padding-bottom: 30px;
+}
+
+.active {
+    color: #ccc;
 }
 
 /* main navigation */
@@ -68,9 +78,10 @@ html, body {
 
 #user-nav {
     background: #ccc;
+    transition: height 350ms ease-in-out;
     display: none;
-	transition: height 350ms ease-in-out;
-
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
 }
 
 .navbar {
@@ -98,3 +109,53 @@ html, body {
     background: ;
 }
 
+.card {
+    margin: 10px auto;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+    width: 95%;
+
+  }
+  
+.card:hover {
+    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    transform: scale(1.03, 1.03)
+  }
+
+.card-data {
+    padding: 10px 5px;
+    margin: 5px;
+  }
+  
+
+
+.card-data > ul {
+    padding: 20px;
+}
+
+.card-data > ol {
+    padding: 20px;
+}
+
+.card-data > blockquote {
+    padding: 20px;
+    background: #ccc;
+    border-left: 5px solid rgb(104, 103, 103);
+}
+
+.pagination{
+    margin: 10px;
+}
+
+.page-link {
+    margin: 2px;
+    padding: 10px;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+    text-decoration: none;
+}

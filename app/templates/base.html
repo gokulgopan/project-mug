@@ -15,7 +15,7 @@
 
         
         {% include '_user_nav.html' %}
-    <div class="main">
+
     
 
         {% include '_flash_msg.html' %}
@@ -23,7 +23,7 @@
     {% block content %}
 
     {% endblock %}
-    </div>
+  
 </div>
 
 <script type="text/javascript">
@@ -31,8 +31,10 @@
     var x = document.getElementById("user-nav");
     if (x.style.display == "none" || x.style.display === "") {
       x.style.display = "block";
+      x.style.opacity = "1";
     } else {
       x.style.display = "none";
+      x.style.opacity = "0";
     }
   }
 </script>
