@@ -6,6 +6,8 @@ from app.models import User, Post, Team, userteams, Roles, userroles
 from flask import request
 from werkzeug.urls import url_parse
 from functools import wraps
+from flask import g
+from app.forms import SearchForm
 
 
 def admin_required(f):
@@ -170,3 +172,10 @@ def admin_rm_user_team():
 @login_required
 def admin_rm_user():
     return "Remove User"
+
+@app.route('/search')
+@login_required
+def search():
+    searchquery = request.args.get('search', default=None, type=None)
+    posts, total = Post.search(searchquery, 1, 5)
+    return render_template('search.html', posts=posts)

@@ -4,3 +4,4 @@ pm_env/
 migrations/
 *.db
 pm3/
+*.ipynb

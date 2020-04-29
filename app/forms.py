@@ -40,3 +40,8 @@ class CreateTeam(FlaskForm):
     name = StringField('Team name', validators=[DataRequired()], render_kw={"placeholder": "Team Name"})
     body = StringField('About', validators=[DataRequired()], render_kw={"placeholder": "Description"})
     submit = SubmitField('Register')
+
+class SearchForm(FlaskForm):
+    search = StringField('search', validators=[DataRequired()], render_kw={"placeholder": "search"})
+    submit = SubmitField('Register')
+

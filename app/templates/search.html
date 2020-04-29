@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="main">
+    {% for a in posts %}
+    <div class="card">
+        <div class="card-data">
+            <h3>{{ a.title }}</h3><br>
+            <p>{{ a.body }}</p><br>
+            {{ a.author.username }} at {{ a.timestamp }}
+    </div></div>
+    {% endfor %}
+    
+{% endblock %}
