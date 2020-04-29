@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="main">
-    {% for a in posts %}
+    {% for a in posts.items %}
     <div class="card">
         <div class="card-data">
             <h3>{{ a.title }}</h3><br>
@@ -12,4 +12,15 @@
     </div></div>
     {% endfor %}
     
+
+    <div class="pagination">
+        {% for page_num in posts.iter_pages() %}
+          {% if page_num %}
+            <a class="page-link" href="{{ url_for('search', search=searchquery, page=page_num) }}">{{ page_num }}</a>
+          {% else %}
+            ...
+          {% endif %}
+        {% endfor %}
+        </div>
+        
 {% endblock %}

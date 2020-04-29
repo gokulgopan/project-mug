@@ -176,6 +176,8 @@ def admin_rm_user():
 @app.route('/search')
 @login_required
 def search():
+    page = request.args.get('page', 1, type=int)
     searchquery = request.args.get('search', default=None, type=None)
     posts, total = Post.search(searchquery, 1, 5)
-    return render_template('search.html', posts=posts)
+    post = posts.paginate(page=page, per_page=3)
+    return render_template('search.html', posts=post, searchquery=searchquery)
