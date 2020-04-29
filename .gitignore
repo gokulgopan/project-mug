@@ -3,3 +3,4 @@ __pycache__/
 pm_env/
 migrations/
 *.db
+pm3/
