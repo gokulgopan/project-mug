@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-data">
             <h3>{{ a.title }}</h3><br>
-            <p>{{ a.body }}</p><br>
+            <p>{{ a.body | safe }}</p><br>
             {{ a.author.username }} at {{ a.timestamp }}
     </div></div>
     {% endfor %}

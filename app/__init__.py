@@ -13,6 +13,7 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 ckeditor = CKEditor(app)
+#app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.debug = True
 app.app_context()
 
