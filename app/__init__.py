@@ -19,6 +19,6 @@ app.app_context()
 
 app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']])
 
-from app import routes, models
+from app import routes, models, error
 
 

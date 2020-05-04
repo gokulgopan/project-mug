@@ -1,27 +1,33 @@
-<nav class="main-nav">
-    <div class="logo">
-        Project Mug
+<div class="navbar-fixed">
+
+<nav class="blue-grey">
+    <div class="container">
+    <div class="nav-wrapper">
+
+    <div class="row">
+    <div class="col s3">
+      <a href="{{ url_for('index')}}" class="brand-logo">mug</a>   
     </div>
-
-    <div class="main-search">
-        <form action="{{ url_for('search') }}">
-            <input id="main-search-input" type="text" placeholder="Search.." name="search">
-        </form>
-
     
-    </div>
+    <form class="search-box col s6" action="{{ url_for('search')}}">
+        <div class="row">
+          <div class="input-field">
+          <input name="search" placeholder="Search...." id="autocomplete-input" type="tel" class="validate">
+        </div>
+        </div>
+      </form>
 
-    <ul class="main-icons">
-        <li class="">
-            <a href="{{ url_for('add_update') }}">
-            <svg id="main-svg-add" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path id="main-svg-add" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg>
-        </a></li>
-        <li class="main-svg-bar">
-            <a href="#" onclick="myFunction()">
-            <svg  id="main-svg-bar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path id="main-svg-add" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
-            </a>
-            </li>
-    </ul>
-</nav>
+    <div class="row">
+        <div class="col s3 ">
+          <a href="!#" data-target="slide-out" class="sidenav-trigger show-on-large right"><i class="material-icons">menu</i></a>
+        </div>
+
+
+</div>
+    </div>
+  </nav>
+</div>
+
+  <ul id="slide-out" class="sidenav">
+    
+  </ul>

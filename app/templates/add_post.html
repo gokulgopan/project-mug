@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container">
+<div class="row">
+<div class="col l8 offset-l2 ">
 
 <div class="post-form">
-    <h1>Add an update</h1>
+    <h4>Add an update</h4>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
@@ -18,12 +21,13 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p><a class="waves-effect waves-light btn" href="">{{ form.submit() }}</a></p>
     </form>
-    {{ ckeditor.load() }}
+    {{ ckeditor.load(serve_local=True) }}
     {{ ckeditor.config(name='body') }}
     {{ ckeditor.config() }}
     </div>
-
-
+</div>
+</div>
+</div>
 {% endblock %}

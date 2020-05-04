@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+
+<div class="container">
+
+<div class="row">
+ <div class="col l10 offset-l1">
+<div class="card hoverable">
+
+
+{% if post %}
+
+<div class="card-content">
+
+    <span class="card-title">
+    <a href="#"> 
+      {{ post.title }}
+    </a>
+    </span>
+      <p>{{ post.body | safe  }}</p><br>
+      <P>{{ post.author.username }} at {{ post.timestamp }}</P>
+</div>
+
+{% endif %}
+
+
+
+
+</div>
+</div></div>
+
+<div class="row">
+    
+    <div class="col l10 offset-l1">
+
+        <button data-target="modal1" class="btn-floating btn modal-trigger">
+            <i class="material-icons">note_add</i>
+            </button>
+    <button class="btn-floating btn waves-effect waves-light" type="submit" name="action">
+        <i class="material-icons">edit</i>
+      </button>
+
+    <button class="btn-floating btn waves-effect waves-light red accent-4" type="submit" name="action">
+        <i class="material-icons">delete</i>
+    </button>
+    
+
+
+
+    <!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+
+          
+              <div class="note-form">
+                  <h4>add note</h4>
+                  <form action="" method="post">
+                      {{ form.hidden_tag() }}
+                      <p>
+                          {{ form.note(size=300) }}<br>
+                          {% for error in form.note.errors %}
+                          <span style="color: red;">[{{ error }}]</span>
+                          {% endfor %}
+                      </p>
+                      
+                      <p><a class="waves-effect waves-light btn" href="">{{ form.submit() }}</a></p>
+                  </form>
+                  </div>
+                  {{ ckeditor.load(serve_local=True) }}
+                  {{ ckeditor.config(name='note') }}
+                  {{ ckeditor.config() }}
+   
+  
+  </div>
+           
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      M.Modal.init(elems, {});
+    });
+  </script>
+</div></div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

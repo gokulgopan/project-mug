@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css') }}">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
 
         {% include '_main_nav.html' %}
-
-        
-        {% include '_user_nav.html' %}
 
     
 
@@ -24,8 +23,8 @@
     {% block content %}
 
     {% endblock %}
-  
-</div>
+
+ 
 
 <script type="text/javascript">
     function myFunction() {
@@ -38,8 +37,25 @@
       x.style.opacity = "0";
     }
   }
-</script>
-<script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
 
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, options);
+  });
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/script.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+  var myNav = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(myNav, {});
+});
+</script>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large waves-effect waves-light red" href="{{ url_for('add_update')}}">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
 </body>
 </html>

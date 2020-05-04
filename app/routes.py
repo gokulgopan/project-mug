@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for
-from app.forms import LoginForm, RegisterForm, PostForm, CreateTeam
+from app.forms import LoginForm, RegisterForm, PostForm, CreateTeam, UpdateNote
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post, Team, userteams, Roles, userroles
 from flask import request
@@ -30,7 +30,7 @@ def index():
     team = Team.query.join(userteams).join(User).filter((userteams.c.user_id == user.id) & (userteams.c.team_id == Team.id)).first()
     #if team is not None:
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.filter(Post.team_id == team.id).order_by(Post.timestamp.desc()).paginate(page=page, per_page=3)
+    posts = Post.query.filter(Post.team_id == team.id).order_by(Post.timestamp.desc()).paginate(page=page, per_page=8)
         #if posts is not None:
     return render_template('index.html', title='Updates', posts=posts)
     #return "Welcome"
@@ -181,3 +181,14 @@ def search():
     posts, total = Post.search(searchquery, 1, 5)
     post = posts.paginate(page=page, per_page=3)
     return render_template('search.html', posts=post, searchquery=searchquery)
+
+@app.route('/updates/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def post_view(post_id):
+    post = Post.query.get(post_id)
+    form = UpdateNote()
+    return render_template('post_view.html', post=post, form=form)
+
+
+
+

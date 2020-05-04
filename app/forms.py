@@ -45,3 +45,6 @@ class SearchForm(FlaskForm):
     search = StringField('search', validators=[DataRequired()], render_kw={"placeholder": "search"})
     submit = SubmitField('Register')
 
+class UpdateNote(FlaskForm):
+    note = StringField('note', validators=[DataRequired()], render_kw={"placeholder": "search"})
+    submit = SubmitField('add')

@@ -84,6 +84,7 @@ class User(UserMixin, db.Model):
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     teams = db.relationship('Team', secondary=userteams, lazy='dynamic')
     roles = db.relationship('Roles', secondary=userroles, lazy='dynamic')
+    notes = db.relationship('UpdateNote', backref='note_author', lazy='dynamic')
 
     def __repr__(self):
         return f'<User { self.username }>'
@@ -103,9 +104,17 @@ class Post(SearchableMixin, db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    notes = db.relationship('UpdateNote', backref='note_post', lazy='dynamic')
 
     def __repr__(self):
         return f'<title { self.title }>'
+
+class UpdateNote(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    note = db.Column(db.String(300))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 @login.user_loader
 def load_user(id):

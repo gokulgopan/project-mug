@@ -1,24 +1,43 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="main">
+
+<div class="container">
+
+<div class="row">
+<div class="col l10 offset-l1">
+<h4>Updates</h4>
 {% for a in posts.items %}
-<div class="card">
-    <div class="card-data">
-        <h3>{{ a.title }}</h3><br>
+<div class="card hoverable">
+
+<div class="card-content">
+
+      <span class="card-title">
+      <a href="{{ url_for('post_view', post_id=a.id) }}"> 
+        {{ a.title }}
+      </a>
+      </span>
         <p>{{ a.body | safe  }}</p><br>
-        {{ a.author.username }} at {{ a.timestamp }}
+        <P>{{ a.author.username }} at {{ a.timestamp }}</P>
 </div></div>
+
 {% endfor %}
 
-<div class="pagination">
-{% for page_num in posts.iter_pages() %}
+
+<ul class="pagination">
+  {% for page_num in posts.iter_pages() %}
   {% if page_num %}
-    <a class="page-link" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+  <li>
+    <a class="waves-effect" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+  </li>
   {% else %}
     ...
   {% endif %}
 {% endfor %}
+</ul>
+
+</div>
+</div>
 </div>
 </div>
 {% endblock %}

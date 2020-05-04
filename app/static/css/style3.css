@@ -1,0 +1,27 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+/*
+
+.row .col{
+    float: none !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  */
+
+.main_search {
+    padding: 0px 10px;
+}
+
+.search-box input:-webkit-autofill {
+  border: 1px solid green;
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
