@@ -60,20 +60,20 @@
                   <form action="" method="post">
                       {{ form.hidden_tag() }}
                       <p>
-                          {{ form.note(size=300) }}<br>
+                          {{ form.note(cols=50, rows=4) }}<br>
                           {% for error in form.note.errors %}
                           <span style="color: red;">[{{ error }}]</span>
                           {% endfor %}
-                      </p>
-                      
+                      </p>                     
                       <p><a class="waves-effect waves-light btn" href="">{{ form.submit() }}</a></p>
-                  </form>
-                  </div>
-                  {{ ckeditor.load(serve_local=True) }}
+                      {{ ckeditor.load(serve_local=True) }}
                   {{ ckeditor.config(name='note') }}
                   {{ ckeditor.config() }}
-   
-  
+                  </form>
+                  
+                  </div>
+
+    </div>
   </div>
            
   <script>
@@ -88,14 +88,18 @@
 
 </div>
 
-
-
-
-
-
-
-
-
-
+<div class="container">
+<div class="row">
+<div class="col l8 offset-l2">
+<h4>Updates</h4>
+{% if notes %}
+{% for note in notes %}
+<div class="card hoverable">
+<div class="card-content">
+        <p>{{ note.note | safe  }}</p><br>
+</div></div>
+{% endfor %}
+{% endif %}
+</div></div></div>
 
 {% endblock %}

@@ -1,8 +1,8 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for
-from app.forms import LoginForm, RegisterForm, PostForm, CreateTeam, UpdateNote
+from app.forms import LoginForm, RegisterForm, PostForm, CreateTeam, UpdateNoteForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User, Post, Team, userteams, Roles, userroles
+from app.models import User, Post, Team, userteams, Roles, userroles, UpdateNote
 from flask import request
 from werkzeug.urls import url_parse
 from functools import wraps
@@ -185,10 +185,17 @@ def search():
 @app.route('/updates/<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def post_view(post_id):
+    form = UpdateNoteForm()
     post = Post.query.get(post_id)
-    form = UpdateNote()
-    return render_template('post_view.html', post=post, form=form)
-
-
-
-
+    if form.validate_on_submit():
+        user = current_user
+        un = UpdateNote(note=form.note.data, post_id=post.id)
+        db.session.add(un)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+        return redirect(next_page)       
+    notes = UpdateNote.query.filter(UpdateNote.post_id == post_id)
+    return render_template('post_view.html', post=post, form=form, notes=notes)
