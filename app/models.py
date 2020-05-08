@@ -98,7 +98,7 @@ class User(UserMixin, db.Model):
 class Post(SearchableMixin, db.Model):
     __tablename__ = 'post'
     __searchable__ = ['title', 'body']
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, unique=True)
     title = db.Column(db.String(120))
     body = db.Column(db.String(300))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

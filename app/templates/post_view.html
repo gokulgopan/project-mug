@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-
-
 <div class="container">
 
 <div class="row">
@@ -27,8 +24,6 @@
 {% endif %}
 
 
-
-
 </div>
 </div></div>
 
@@ -36,15 +31,17 @@
     
     <div class="col l10 offset-l1">
 
-        <button data-target="modal1" class="btn-floating btn modal-trigger">
+        <button data-target="modal1" class="btn-floating btn modal-trigger red accent-1">
             <i class="material-icons">note_add</i>
             </button>
-    <button class="btn-floating btn waves-effect waves-light" type="submit" name="action">
+    <button class="btn-floating btn waves-effect waves-light teal darken-2" type="submit" name="action">
         <i class="material-icons">edit</i>
       </button>
 
     <button class="btn-floating btn waves-effect waves-light red accent-4" type="submit" name="action">
+      <a href="{{ url_for('delete_update', post_id=post.id) }}" method=post>
         <i class="material-icons">delete</i>
+      </a>
     </button>
     
 
@@ -90,8 +87,8 @@
 
 <div class="container">
 <div class="row">
-<div class="col l8 offset-l2">
-<h4>Updates</h4>
+<div class="col l8 offset-l1">
+<h4>Notes</h4>
 {% if notes %}
 {% for note in notes %}
 <div class="card hoverable">

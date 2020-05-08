@@ -193,9 +193,26 @@ def post_view(post_id):
         db.session.add(un)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
-        return redirect(next_page)       
+        #next_page = request.args.get('next')
+        #if not next_page or url_parse(next_page).netloc != '':
+        #    next_page = url_for('index')
+        #return redirect(next_page)
+        notes = UpdateNote.query.filter(UpdateNote.post_id == post_id)
+        return render_template('post_view.html', post=post, form=form, notes=notes)      
     notes = UpdateNote.query.filter(UpdateNote.post_id == post_id)
     return render_template('post_view.html', post=post, form=form, notes=notes)
+
+
+@app.route('/delete-update/<int:post_id>')
+@login_required
+def delete_update(post_id):
+    try:
+        Post.query.filter(Post.id == post_id).delete()
+        UpdateNote.query.filter(UpdateNote.post_id == post_id).delete()
+        db.session.commit()
+        flash('Post successfully deleted')
+    except:
+        db.session.rollback()
+    return redirect(url_for('index'))
+
+

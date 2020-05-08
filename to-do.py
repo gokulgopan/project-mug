@@ -1,5 +1,5 @@
 edit profile page
-edit post > if autor == current_usr (Show edit button)
+edit post > if author == current_usr (Show edit button)
 
 add note for existing update
 show count of notes on index
